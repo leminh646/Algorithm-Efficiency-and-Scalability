@@ -19,6 +19,18 @@ def randomized_quicksort(arr):
     gt = [x for x in arr if x > pivot]
     return randomized_quicksort(lt) + eq + randomized_quicksort(gt)
 
+def deterministic_quicksort(arr):
+    """
+    Deterministic QuickSort: always uses the first element as pivot.
+    Returns a new sorted list.
+    """
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    lt = [x for x in arr if x < pivot]
+    eq = [x for x in arr if x == pivot]
+    gt = [x for x in arr if x > pivot]
+    return deterministic_quicksort(lt) + eq + deterministic_quicksort(gt)
 
 if __name__ == "__main__":
     # Benchmark settings
@@ -48,10 +60,20 @@ if __name__ == "__main__":
                 total_rand += (time.perf_counter() - t0)
             avg_rand = total_rand / repeats
 
+            # Prepare fresh inputs for deterministic tests
+            total_det = 0.0
+            for _ in range(repeats):
+                arr = gen(n)
+                t0 = time.perf_counter()
+                deterministic_quicksort(arr)
+                total_det += (time.perf_counter() - t0)
+            avg_det = total_det / repeats
+
             results.append({
                 'n': n,
                 'distribution': name,
-                'avg_time_s': avg_rand
+                'randomized_avg_time_s': avg_rand,
+                'deterministic_avg_time_s': avg_det
             })
 
     # Display results
