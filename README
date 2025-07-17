@@ -1,0 +1,43 @@
+# QuickSort Benchmark
+
+A simple Python benchmark comparing **Randomized QuickSort** (random pivot) against **Deterministic QuickSort** (first-element pivot) over various input sizes and distributions.
+
+This repository provides a Python script, `randomized_quicksort.py`, which: Implements both algorithms, measures average runtimes over multiple trials, and prints the results.
+
+## Prerequisites
+
+- Python 3.7 or higher  
+- `pandas` library
+
+Install dependencies with:
+
+```bash
+pip install pandas
+```
+
+## Run the benchmark script
+
+```bash
+python randomized_quicksort.py
+```
+
+## Example output
+```
+      n distribution  randomized_avg_time_s  deterministic_avg_time_s
+0  1000       random               0.002506                  0.002364
+1  1000       sorted               0.003037                  0.082571
+2  1000      reverse               0.003267                  0.082748
+3  1000     repeated               0.000565                  0.000531
+4  2000       random               0.006862                  0.004869
+5  2000       sorted               0.006062                  0.321892
+6  2000      reverse               0.005444                  0.321692
+7  2000     repeated               0.001091                  0.001025
+8  5000       random               0.017799                  0.014076
+9  5000     repeated               0.002600                  0.002505
+```
+## Summary of Findings
+    - Random arrays: Both scale at O(nlogn_). Deterministic QuickSort is marginally faster on random inputs due to lower pivot‐selection overhead.
+    - Already sorted & reverse‐sorted arrays: Deterministic QuickSort degrades to Θ(n**2), showing dramatically higher runtimes. Randomized QuickSort remains near O(nlogn) and is unaffected by input order.
+    - Repeated elements: Both algorithms run in near‐linear time because grouping equal keys reduces recursion depth. Timing differences are minor and reflect only random‐pivot overhead.
+
+Overall, Randomized QuickSort provides robust O(nlogn) performance on all inputs, whereas the first‐element pivot strategy can suffer worst‐case quadratic slowdowns on adversarially ordered data.
