@@ -1,0 +1,44 @@
+# HashTableChaining
+
+A simple Python implementation of a hash table using **separate chaining** for collision resolution and **dynamic resizing** to maintain efficient operations. Keys can be of any hashable type; values can be any Python object.
+
+---
+
+## Features
+
+- **Universal hashing**  
+  Randomized parameters \(a, b\) over a large prime modulus to spread keys evenly.
+
+- **Chaining**  
+  Each bucket holds a Python list of key–value pairs.
+
+- **Amortized \(O(1)\) operations**  
+  Search, insert, and delete run in \(O(1 + \alpha)\) expected time, where \(\alpha\) is the load factor.
+
+- **Dynamic resizing**  
+  - **Grow** the table (double capacity) when load factor exceeds a threshold (default 0.75).  
+  - **Shrink** the table (halve capacity) when load factor falls below one-third of the threshold.
+
+- **Simple test suite**  
+  Basic insert, search, update, delete, collision handling, and resize tests run when you execute the module directly.
+
+---
+
+## Requirements
+
+- Python 3.6 or higher
+
+No third-party dependencies.
+
+---
+
+## Running the built-in test
+
+```bash
+python hash_table_chaining.py
+```
+
+You should see:
+```
+All basic tests passed!
+```
